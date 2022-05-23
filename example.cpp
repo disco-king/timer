@@ -9,11 +9,11 @@ int main(int argc, char const *argv[])
 {
 
 	{
-		Timer<int, MICRO> t;	// Declaring a Timer object
-								// with int type spans and measurment in microseconds.
+		Timer<int, NANO> t;		// Declaring a Timer object
+								// with int type spans and measurment in nanoseconds.
 								// It's also possible (in theory) to use any scalar type,
-								// but types greater than MICRO
-								// probably won't work with integral storage types.
+								// but ratios that are to great
+								// may not work with integral storage types.
 		
 		t.start();//starting the clock
 
@@ -35,19 +35,19 @@ int main(int argc, char const *argv[])
 
 	{
 		//advanced stuff
-		Timer<double, NANO> t;
+		Timer<double, MICRO> t;
 
 		t.start();
 
-		usleep(1);
+		usleep(100);
 
 		t.finish();// first measurement, accessible by index 0
 
-		usleep(2);
+		usleep(200);
 
 		t.finish();// second measurement, index 1
 
-		usleep(3);
+		usleep(300);
 
 		t.finish();// third measurement, index 2
 
