@@ -19,8 +19,8 @@ public:
 	typedef std::milli milli;
 	typedef std::micro micro;
 	typedef std::chrono::system_clock clock;
+	typedef std::chrono::time_point<clock> point;
 	typedef std::chrono::duration<Data, Unit> duration;
-	typedef std::chrono::time_point<clock, duration> point;
 
 private:
 	point start_point;
@@ -34,8 +34,8 @@ public:
 	duration getTime();
 	void printTime();
 
-	Timer() : start_point(clock::now()),
-				finish_point(clock::now())
+	Timer() : start_point(),
+				finish_point()
 	{};
 
 };
