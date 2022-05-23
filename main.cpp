@@ -22,17 +22,12 @@ void print_vec(T const &vec)
 int main(int argc, char const *argv[])
 {
 
-	typedef std::chrono::system_clock clock;
-	typedef std::chrono::time_point<clock> point;
-
-	Timer<int, std::micro> t;
+	Timer<int, NANO> t;
 
     std::vector<int> v;
     TYPE<int> vector;
     vector.assign(1100 * _ratio, 11);
     _vector<int> tmp(500 * _ratio, 5), tmp2(1000 * _ratio, 10), tmp3(1500 * _ratio, 15), tmp4(3000 * _ratio, 30);
-
-	point start_p = clock::now();
 
 	t.start();
 
@@ -58,21 +53,15 @@ int main(int argc, char const *argv[])
 
 	t.finish();
 
-	point finish_p = clock::now();
-	std::chrono::duration<int, std::micro> dur = finish_p - start_p;
-	std::cout << "by manual templ: ";
+	std::cout << "by built-in print: ";
+	t.printTime(0, "time taken: ", false);
+	std::cout << std::endl;
+
+	std::cout << "by return from function: ";
+	int d = t.getTime();
 	std::cout << "time elapsed: " 
 	<< std::fixed
-	<< dur.count() << '\n';
-
-	std::cout << "by built-in print: ";
-	t.printTime();
-
-	// std::cout << "by return from function: ";
-	// Timer<double, MILLI>::duration d = t.getTime();
-	// std::cout << "time elapsed: " 
-	// << std::fixed
-	// << d.count() << '\n';
+	<< d << '\n';
 
     return 0;
 }
