@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
 		Timer<int, NANO> t;		// Declaring a Timer object
 								// with int type spans and measurment in nanoseconds.
 								// It's also possible (in theory) to use any scalar type,
-								// but ratios that are to great
+								// but ratios that are too great
 								// may not work with integral storage types.
 		
 		t.start();//starting the clock
