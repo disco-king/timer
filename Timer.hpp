@@ -4,18 +4,23 @@
 #include <chrono>
 #include <iostream>
 
-#define USECS 1
-#define MSECS 2
+#define MICRO std::micro
+#define MILLI std::milli
+#define CENTI std::centi
+#define DECI std::deci
+#define DECA std::deca
 
+
+template <typename Data = double, typename Unit = std::micro>
 class Timer
 {
 
 public:
+	typedef std::milli milli;
+	typedef std::micro micro;
 	typedef std::chrono::system_clock clock;
-	typedef std::chrono::microseconds usecs;
-	typedef std::chrono::milliseconds msecs;
-	typedef std::chrono::time_point<clock> point;
-	typedef std::chrono::duration<double, std::micro> duration;
+	typedef std::chrono::duration<Data, Unit> duration;
+	typedef std::chrono::time_point<clock, duration> point;
 
 private:
 	point start_point;
@@ -26,8 +31,8 @@ public:
 
 	void start();
 	void finish();
-	duration getTime(int unit);
-	void printTime(int unit);
+	duration getTime();
+	void printTime();
 
 	Timer() : start_point(clock::now()),
 				finish_point(clock::now())
@@ -35,23 +40,27 @@ public:
 
 };
 
-void Timer::start()
+template <typename Data, typename Unit>
+void Timer<Data, Unit>::start()
 {
 	start_point = clock::now();
 }
 
-void Timer::finish()
+template <typename Data, typename Unit>
+void Timer<Data, Unit>::finish()
 {
 	finish_point = clock::now();
 	time = finish_point - start_point;
 }
 
-Timer::duration Timer::getTime(int unit)
+template <typename Data, typename Unit>
+typename Timer<Data, Unit>::duration Timer<Data, Unit>::getTime()
 {
 	return time;
 }
 
-void Timer::printTime(int unit)
+template <typename Data, typename Unit>
+void Timer<Data, Unit>::printTime()
 {
 	std::cout << "time elapsed: " 
 	<< std::fixed
