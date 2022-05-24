@@ -9,11 +9,9 @@ int main(int argc, char const *argv[])
 {
 
 	{
-		Timer<int, NANO> t;		// Declaring a Timer object
-								// with int type spans and measurment in nanoseconds.
-								// It's also possible (in theory) to use any scalar type,
-								// but ratios that are too great
-								// may not work with integral storage types.
+		Timer<int, MICRO> t;	// Declaring a Timer object
+								// with spans of type int and measurment in microseconds.
+								// It's also possible to use any scalar type.
 		
 		t.start();//starting the clock
 

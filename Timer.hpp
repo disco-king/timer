@@ -14,14 +14,16 @@
 #define DECA std::deca
 
 
-template <typename Data = double, typename Unit = std::micro>
+template <typename Data = float,
+		 typename Unit = std::micro,
+		 typename Base = double>
 class Timer
 {
 
 public:
 	typedef std::chrono::system_clock clock;
 	typedef std::chrono::time_point<clock> point;
-	typedef std::chrono::duration<Data, Unit> duration;
+	typedef std::chrono::duration<Base, Unit> duration;
 
 private:
 	point start_point;
