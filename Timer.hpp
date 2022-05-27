@@ -39,10 +39,12 @@ public:
 	void printTime(int index = 0, std::string prefix = "time elapsed: ", bool endl = true);
 	void clearTimes();
 
-	Timer() : start_point(),
-				finish_point()
-	{};
-
+	Timer(int num_points = 10) : start_point(),
+								finish_point(),
+								times()
+	{
+		times.reserve(num_points);
+	}
 };
 
 #include "Timer.tpp"
